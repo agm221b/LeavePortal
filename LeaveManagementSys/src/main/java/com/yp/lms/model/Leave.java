@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.yp.lms.util.Status;
+
 @Entity
 @Table(name = "Leave")
 public class Leave {
@@ -17,14 +19,16 @@ public class Leave {
 	private String reason;
 	private Date startDate;
 	private Date endDate;
-	private String Status;
+	private Status Status;
 	private int noOfDays;
 	
-	public Leave(int leaveId, int empId, int managerId, String reason, Date startDate, Date endDate, String status,
-			int noOfDays) {
+	
+
+	public Leave(int leaveId, int empId, int managerId, String reason, Date startDate, Date endDate,
+			com.yp.lms.util.Status status, int noOfDays) {
 		super();
 		this.leaveId = leaveId;
-		empId = empId;
+		this.empId = empId;
 		this.managerId = managerId;
 		this.reason = reason;
 		this.startDate = startDate;
@@ -83,11 +87,13 @@ public class Leave {
 		this.endDate = endDate;
 	}
 
-	public String getStatus() {
+	
+
+	public Status getStatus() {
 		return Status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		Status = status;
 	}
 

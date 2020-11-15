@@ -6,6 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.yp.lms.model.Leave;
 
+/**
+ * 
+ * @author Aditya Mishra
+ *
+ */
 public interface LeaveRepository extends JpaRepository<Leave, Integer> {
 
 	Leave findLeaveByLeaveId(int leaveId);

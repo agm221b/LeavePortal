@@ -1,6 +1,8 @@
 package com.yp.lms.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,7 +10,13 @@ import com.yp.lms.model.Employee;
 import com.yp.lms.model.Leave;
 import com.yp.lms.repository.EmployeeRepository;
 import com.yp.lms.repository.LeaveRepository;
+import com.yp.lms.util.Status;
 
+/**
+ * 
+ * @author Aditya Mishra
+ *
+ */
 public class LeaveServiceImpl implements LeaveService {
 	
 	@Autowired
@@ -74,4 +82,70 @@ public class LeaveServiceImpl implements LeaveService {
 		return leaveRepository.findLeaveByManagerId(empId);
 	}
 
+	@Override
+	public Leave acceptLeave(Leave leave) {
+		// TODO Auto-generated method stub
+		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmpId());
+		ArrayList<Leave> saveLeaveList = saveEmployee.getLeaveList();
+		Leave saveLeave = null;
+		int index=-1;
+		int count=0;
+		for (Leave leave2 : saveLeaveList) {
+			if(leave2.getLeaveId() == leave.getLeaveId()) {
+				saveLeave = leave2;
+				index= saveLeaveList.indexOf(leave2);
+				count++;
+			}
+		}
+		if(count>1) {
+			System.out.println("Error, multiple leaves of same leaveId in Emps");
+			return null;															//500 error
+		}
+		saveLeave.setStatus(Status.ACCEPTED);
+		
+		saveLeaveList.set(index, saveLeave);
+		saveEmployee.setLeaveList(saveLeaveList);
+		
+		employeeRepository.save(saveEmployee);
+		leaveRepository.save(saveLeave);
+		return saveLeave;
+	}
+
+	@Override
+	public Leave rejectLeave(Leave leave) {
+		// TODO Auto-generated method stub
+		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmpId());
+		ArrayList<Leave> saveLeaveList = saveEmployee.getLeaveList();
+		Leave saveLeave = null;
+		int index=-1;
+		int count=0;
+		for (Leave leave2 : saveLeaveList) {
+			if(leave2.getLeaveId() == leave.getLeaveId()) {
+				saveLeave = leave2;
+				index= saveLeaveList.indexOf(leave2);
+				count++;
+			}
+		}
+		if(count>1) {
+			System.out.println("Error, multiple leaves of same leaveId in Emps");
+			return null;															//500 error
+		}
+		saveLeave.setStatus(Status.REJECTED);
+		
+		int currentLeaves = saveEmployee.getCurrentLeaves();
+		currentLeaves = currentLeaves + saveLeave.getNoOfDays();
+		saveEmployee.setCurrentLeaves(currentLeaves);
+		
+		saveLeaveList.set(index, saveLeave);
+		saveEmployee.setLeaveList(saveLeaveList);
+		
+		employeeRepository.save(saveEmployee);
+		leaveRepository.save(saveLeave);
+		return saveLeave;
+	}
+	
+	
+
+	
+	
 }

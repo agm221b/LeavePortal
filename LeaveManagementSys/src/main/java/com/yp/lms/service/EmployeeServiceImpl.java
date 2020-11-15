@@ -1,14 +1,16 @@
 package com.yp.lms.service;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yp.lms.model.Employee;
-import com.yp.lms.model.Leave;
 import com.yp.lms.repository.EmployeeRepository;
 import com.yp.lms.repository.LeaveRepository;
 
+/**
+ * 
+ * @author Aditya Mishra
+ *
+ */
 public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
@@ -45,6 +47,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee saveEmployee = employeeRepository.save(employee);
 		System.out.println("Employee updated successfully");
 		return saveEmployee;
+	}
+
+	@Override
+	public Employee loginEmployee(String email, String password) {
+		// TODO Auto-generated method stub
+		Employee loginEmployee = employeeRepository.findEmployeeByEmailAndPassword(email, password);
+		if(loginEmployee==null) {
+			System.out.println("Incorrect email/password");
+			return null;												//401 error
+		}
+		return loginEmployee;
 	}
 
 
