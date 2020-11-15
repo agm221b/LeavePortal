@@ -1,15 +1,13 @@
 package com.yp.lms.model;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.mysql.cj.jdbc.Blob;
 
 @Entity
 @Table(name = "Employee")
@@ -17,6 +15,10 @@ public class Employee {
 	private int empId;
 	private String name;
 	private String email;
+	/**
+	 * password is to be stored in password format
+	 */
+	private String password;
 	private String address;
 	private int phoneNo;
 	private int managerId;
@@ -123,13 +125,22 @@ public class Employee {
 		this.leaveList = leaveList;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [empId=" + empId + ", name=" + name + ", email=" + email + ", address=" + address
 				+ ", phoneNo=" + phoneNo + ", managerId=" + managerId + ", currentLeaves=" + currentLeaves + ", image="
 				+ image + ", isManager=" + isManager + ", leaveList=" + leaveList + "]";
 	}
-	
+
+
 	
 	
 }
