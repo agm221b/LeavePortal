@@ -22,7 +22,7 @@ import com.yp.lms.service.LeaveService;
  */
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/v1/emp/")
+@RequestMapping("/api/v1/leave/")
 public class LeaveController {
 
 	@Autowired
@@ -32,7 +32,7 @@ public class LeaveController {
 		this.service = service;
 	}
 	
-	@PostMapping("")
+	@PostMapping("addLeaves")
 	public ResponseEntity<Leave> createAddLeave(@RequestBody Leave leave,int empId){
 		Leave leaves=service.addLeave(leave, empId);
 		return ResponseEntity.ok(leaves);

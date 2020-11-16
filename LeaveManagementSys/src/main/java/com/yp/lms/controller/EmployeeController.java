@@ -24,25 +24,25 @@ public class EmployeeController {
 	}
 	
 @PostMapping("register")
-public ResponseEntity<Employee> createaddEmployee(@RequestBody Employee employee){
+public ResponseEntity<Employee> createaAddEmployee(@RequestBody Employee employee){
 	Employee emp=service.addEmployee(employee);
 	return ResponseEntity.ok(emp);
 }
 
 @GetMapping("profile")
-public ResponseEntity<Employee> createfindEmployee(@RequestParam(value = "id") Integer empId){
+public ResponseEntity<Employee> createFindEmployee(@RequestParam(value = "id") Integer empId){
 	Employee emp=service.findEmployee(empId);
 	return ResponseEntity.ok(emp);
 }
 
 @PostMapping("editProfile")
-public ResponseEntity<Employee> createeditEmployeeDetails(@RequestBody Employee employee){
+public ResponseEntity<Employee> createEditEmployeeDetails(@RequestBody Employee employee){
 	Employee emp=service.addEmployee(employee);
 	return ResponseEntity.ok(emp);
 }
 
 @PostMapping("login")
-public ResponseEntity<Employee> createloginEmployee(@RequestBody Employee employee ){
+public ResponseEntity<Employee> createLoginEmployee(@RequestBody Employee employee ){
 	Employee emp=service.loginEmployee(employee.getEmail(), employee.getPassword());
 	return ResponseEntity.ok(emp);
 }
