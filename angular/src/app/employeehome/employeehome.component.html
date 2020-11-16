@@ -1,0 +1,40 @@
+<app-navbaremployee></app-navbaremployee>
+<br><br><br>
+<h1 style="text-align: center;font-family: monospace">Leave Portal</h1>
+
+
+<div class="row">
+    <div class="col-12 col-md-4 col-lg-3 no-padding">
+        <div class="portfolio-content">
+            <div class="entry-content flex flex-column align-items-center justify-content-center">
+                <div class="container">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Leave date</th>
+                                    <th>Days</th>
+                                    <th>Reason</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let l of leavelist">
+                                    <td>{{l.date}}</td>
+                                    <td>{{l.days}}</td>
+                                    <td>{{l.Reason}}</td>
+                                    <td>{{l.status}}</td>
+                                    <!-- <td>
+                                        <button type="button" routerLink='/additems' class="btn btn-info">
+                                            Add Items</button>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

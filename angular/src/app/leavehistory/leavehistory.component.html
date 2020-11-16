@@ -1,0 +1,27 @@
+<app-navbaremployee></app-navbaremployee>
+<br><br><br>
+
+<div class="col-md-2"></div>
+<div class="col-md-8">
+
+    <div class="table-responsive">
+        <table class="table">
+            <th>Start Date </th>
+            <th>End Date</th>
+            <th>Days</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <tr *ngFor="let leave of leaveslist">
+                <td> {{leave.startDate}} </td>
+                <td> {{leave.endDate}} </td>
+                <td> {{leave.days}} </td>
+                <td> {{leave.reason}} </td>
+                <td> {{leave.status}} </td>
+            </tr>
+            <!-- <tr class="col-md-6">
+                <button type="button" class="btn btn-large btn-block btn-default" 
+                 routerLink="/employeehome">Back</button>
+            </tr> -->
+        </table>
+    </div>
+</div>

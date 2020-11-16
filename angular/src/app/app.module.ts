@@ -3,22 +3,40 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { EmployeehomeComponent } from './employeehome/employeehome.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+import { LeaveComponent } from './leave/leave.component';
+import { LeavehistoryComponent } from './leavehistory/leavehistory.component';
+import { NavbaremployeeComponent } from './navbaremployee/navbaremployee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent,
-    LoginComponent,
-    RegisterComponent
+    HomeComponent,
+    RegisterComponent,
+    EmployeehomeComponent,
+    PagenotfoundComponent,
+    ProfileComponent,
+    EditprofileComponent,
+    LeaveComponent,
+    LeavehistoryComponent,
+    NavbaremployeeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [ LoginserviceService ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

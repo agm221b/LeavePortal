@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'findAny';
+  ngOnInit(){   
+    document.body.classList.add('image');
+  }
 }

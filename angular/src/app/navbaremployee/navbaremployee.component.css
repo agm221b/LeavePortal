@@ -1,0 +1,39 @@
+
+.navbar-default .navbar-nav>li>a {
+    color: black;
+  }
+  
+  .navbar-default .navbar-nav>li>a:hover{
+    color:floralwhite;
+  }
+  
+  .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    border-radius: 10px;
+  }
+  
+  .navbar {
+    position: absolute;
+    left:0;
+    right: 0;
+    top: 0; 
+    width: 100%; 
+    border-radius: 10px;
+    background-color:lightseagreen;
+    border-color: #FF5722;
+  }
+  .table-responsive{
+      background-color: bisque;
+      border-radius: 15px;
+      
+  }
+  .btn-info {
+    color: #fff;
+    background-color: gray;
+    border-color: firebrick;
+    border-radius: 8px;
+  }
+  
+  

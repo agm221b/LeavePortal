@@ -1,0 +1,90 @@
+<app-navbaremployee></app-navbaremployee>
+<br><br><br>
+
+
+
+<div class="col-md-4">
+    <div class="jumbotron" style="padding: 0%">
+
+        <div class="row col-md-12" style="text-align: right;">
+
+            <a routerLink="/editprofile" >Edit
+                <span class="glyphicon glyphicon-pencil"></span></a>
+
+        </div>
+
+        <div class="row " style="text-align: center">
+
+            <figure>
+                <img src="../../assets/b1.jpg" alt="Profile">
+                <figcaption> </figcaption>
+                <label>Profile</label>
+            </figure>
+
+            <!-- <img class="img-thumbnail" src="../../assets/b1.jpg" alt="image"> -->
+        </div>
+        <br>
+        <div class="row">
+            <div class="column col-md-6">
+                <label>Name</label>
+                <input type="text" name="" id="" value="{{employee.name}}" readonly>
+            </div>
+            <div class="column col-md-6 ">
+                <label>Email</label>
+                <input type="email" name="" id="" value="{{employee.email}}" readonly>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="column col-md-6">
+                <label>Address</label>
+                <input type="text" name="" id="" value="{{employee.address}}" readonly>
+            </div>
+            <div class="column col-md-6 ">
+                <label>Phone</label>
+                <input type="email" name="" id="" value="{{employee.phoneNo}}" readonly>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="column col-md-6">
+                <label>Manager</label>
+                <input type="text" name="" id="" value="{{employee.managerId}}" readonly>
+            </div>
+            <div class="column col-md-6 ">
+                <label>Current leaves</label>
+                <input type="email" name="" id="" value="{{employee.currentLeaves}}" readonly>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="col-md-8">
+    <div class="jumbotron" style="padding: 0%">
+        <div class="table-responsive">
+            <h3 style="text-align: center">Leaves</h3>
+            <br>
+            <table class="table">
+                <th>Start Date </th>
+                <th>End Date</th>
+                <th>Days</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <tr *ngFor="let leave of leaveList">
+                    <td> {{leave.startDate}} </td>
+                    <td> {{leave.endDate}} </td>
+                    <td> {{leave.noOfDays}} </td>
+                    <td> {{leave.reason}} </td>
+                    <td> {{leave.status}} </td>
+                </tr>
+                <!-- <tr class="col-md-6">
+                        <button type="button" class="btn btn-large btn-block btn-default" 
+                         routerLink="/employeehome">Back</button>
+                    </tr> -->
+            </table>
+        </div>
+    </div>
+</div>

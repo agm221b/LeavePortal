@@ -1,0 +1,73 @@
+<app-navbaremployee></app-navbaremployee>
+<br><br><br>
+
+
+<div class="col-md-4"></div>
+<div class="col-md-4 abc">
+    <form (ngSubmit)="ApplyLeave()" [formGroup]="registerForm" class="form">
+        <legend>Apply Leave</legend>
+
+        <div class="form-group">
+            <label for="">Start Date*</label>
+            <input type="date" [ngClass]="{ 'is-invalid': submitted && f.startDate?.errors }"
+                formControlName="startDate" class="form-control round" id="startDate" name="startDate" placeholder="">
+
+            <div *ngIf="submitted && f.startDate?.errors" class="invalid-feedback">
+                <div *ngIf="f.startDate?.errors.required"> Date is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">End Date*</label>
+            <input type="date" [ngClass]="{ 'is-invalid': submitted && f.endDate?.errors }" formControlName="endDate"
+                class="form-control round" id="endDate" name="endDate" placeholder="">
+
+            <div *ngIf="submitted && f.endDate?.errors" class="invalid-feedback">
+                <div *ngIf="f.endDate?.errors.required"> Date is required</div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">Exclude weekends   </label>
+            <input type="checkbox" name="weekends" id="weekends" placeholder="Exclude Weekends">
+        </div>
+        <!-- <div >
+                <label for="">Exclude weekends</label>
+                <input type="checkbox" [ngClass]="{ 'is-invalid': submitted && f.?.errors }"
+                    formControlName="" class="form-control round" id="" name=""
+                    placeholder="">
+                <div *ngIf="submitted && f.?.errors" class="invalid-feedback">
+                    <div *ngIf="f.?.errors.required">Days are required</div>
+                </div>
+            </div> -->
+
+        <div class="form-group">
+            <label for="">No. of Days*</label>
+            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.leaveDays?.errors }"
+                formControlName="leaveDays" class="form-control round" id="leaveDays" name="leaveDays"
+                placeholder="leave days">
+            <div *ngIf="submitted && f.leaveDays?.errors" class="invalid-feedback">
+                <div *ngIf="f.leaveDays?.errors.required">Days are required</div>
+                <div *ngIf="f.leaveDays?.errors.min">must be 1 or greater than 1</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Reason</label>
+            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.leaveReason?.errors }"
+                formControlName="leaveReason" class="form-control round" id="leaveReason" name="leaveReason"
+                placeholder="leave Reason">
+            <div *ngIf="submitted && f.leaveReason?.errors" class="invalid-feedback">
+                <!-- <div *ngIf="f.leaveReason?.errors.required">Days are required</div> -->
+                <div *ngIf="f.leaveReason?.errors.maxLength">limit exceeded</div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Apply</button>
+            <button (click)="onReset()" class="btn btn-danger round"
+                style="margin-left: 190px;border-color: black;">Cancel</button>
+        </div>
+    </form>
+</div>
+<div class="col-md-4"></div>
