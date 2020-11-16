@@ -1,6 +1,7 @@
 package com.yp.lms.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.yp.lms.model.Employee;
 import com.yp.lms.repository.EmployeeRepository;
@@ -11,6 +12,7 @@ import com.yp.lms.repository.LeaveRepository;
  * @author Aditya Mishra
  *
  */
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired

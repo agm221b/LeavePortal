@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.yp.lms.model.Employee;
 import com.yp.lms.model.Leave;
@@ -17,6 +18,7 @@ import com.yp.lms.util.Status;
  * @author Aditya Mishra
  *
  */
+@Service
 public class LeaveServiceImpl implements LeaveService {
 	
 	@Autowired
