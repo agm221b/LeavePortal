@@ -19,7 +19,7 @@ export class NavbaremployeeComponent implements OnInit {
 
   isManager(){
    // if(employee.isManager==true){
-   //   return true;
+     return true;
    // }
   }
 

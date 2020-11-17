@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { LeaveComponent } from './leave/leave.component';
 import { LeavehistoryComponent } from './leavehistory/leavehistory.component';
+import { ManagerrequestsComponent } from './managerrequests/managerrequests.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path : 'editprofile', component : EditprofileComponent},
   { path : 'leave', component : LeaveComponent},
   { path : 'leavehistory', component : LeavehistoryComponent},
-
+  { path : 'requests', component : ManagerrequestsComponent},
   { path : '**', component : PagenotfoundComponent}
 ];
 

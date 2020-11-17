@@ -31,14 +31,13 @@ constructor(private formBuilder: FormBuilder,private route: ActivatedRoute,
 ngOnInit() {
   this.registerForm = this.formBuilder.group({
     
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    custEmailId: ['', [Validators.required, Validators.email]],
-    custAddress: ['', Validators.required],
-    custmobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-    customerPassword: ['', [Validators.required, Validators.minLength(6)]],
-    managerId: ['', Validators.required],
-    currentLeaves: ['', Validators.required]
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    address: ['', Validators.required],
+    phoneNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), 
+                Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    managerId: ['', Validators.required]
   })
 }
 get f() { return this.registerForm.controls; }
@@ -54,13 +53,14 @@ RegisterCustomer() {
   //observable.subscribe((result) => {
   //  alert(JSON.stringify(result));
   //});
-  this.router.navigate(['/']);
+  alert(JSON.stringify(this.registerForm.value));
+  this.router.navigate(['']);
 }
 
 onReset() {
   this.submitted = false;
   this.registerForm.reset();
-  this.router.navigate(['']);
+  this.router.navigate(['/register']);
 }
 
 }

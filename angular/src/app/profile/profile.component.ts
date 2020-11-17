@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
       "email": "adi@gmail.com",
       "password":"aditya",
       "address": "pune",
-      "phoneNo": "1212121212",
+      "phoneNo": "9912121212",
       "managerId": "123",
       "currentLeaves": "22",
       "leaveList":""

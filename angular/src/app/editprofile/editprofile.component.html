@@ -4,57 +4,92 @@
 <div class="col-md-4"></div>
 <div class="col-md-4">
     <div class="jumbotron" style="padding: 0%">
-
-        <div class="row " style="text-align: center">
-
-            <figure>
-                <img src="../../assets/b1.jpg" alt="Profile">
-                <figcaption> </figcaption>
-                <label>Profile</label>
-            </figure>
-
-        </div>
-        <br>
-        <div class="row">
-            <div class=" col-md-6">
-                <label>Name</label>
-                <input type="text" name="" id="" value="{{employee.name}}">
+        <form (ngSubmit)="updateProfile()" [formGroup]="registerForm" class="form">
+            <legend>Edit Employee</legend>
+            <div class="row " style="text-align: center">
+                <div class="form-group">
+                    <label for="">Image</label>
+                    <input id="profilepic" class="form-control round" type="file" name="profilepic">
+                </div>
             </div>
-            <div class=" col-md-6 ">
-                <label>Email</label>
-                <input type="email" name="" id="" value="{{employee.email}}">
+            <br>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Name</label>
+                    <input type="text" [ngClass]="{ 'is-invalid': submitted && f.name?.errors }" formControlName="name"
+                        class="form-control round" id="name" name="name" placeholder="name">
+
+                    <div *ngIf="submitted && f.name?.errors" class="invalid-feedback">
+                        <div *ngIf="f.name?.errors.required"> First Name is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    <label>Email</label>
+                    <input type="text" [ngClass]="{ 'is-invalid': submitted && f.email?.errors }"
+                        formControlName="email" class="form-control round" id="email" name="email" placeholder="Email">
+                    <div *ngIf="submitted && f.email?.errors" class="invalid-feedback">
+                        <div *ngIf="f.email?.errors.required"> Email is required</div>
+                        <div *ngIf="f.email?.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Address</label>
+                    <input type="text" [ngClass]="{ 'is-invalid': submitted && f.address?.errors }"
+                        formControlName="address" class="form-control round" id="address" name="address"
+                        placeholder="Address">
+
+                    <div *ngIf="submitted && f.address?.errors" class="invalid-feedback">
+                        <div *ngIf="f.address?.errors.required"> Address is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 ">
+                    <label>Phone</label>
+                    <input type="tel" [ngClass]="{ 'is-invalid': submitted && f.phoneNo?.errors }"
+                        formControlName="phoneNo" class="form-control round" id="phoneNo" name="phoneNo"
+                        placeholder="Contact No.">
+                    <div *ngIf="submitted && f.phoneNo?.errors" class="invalid-feedback">
+                        <div *ngIf="f.phoneNo?.errors.required">Contact No is required</div>
+                        <div *ngIf="f.phoneNo?.errors.minlength||f.phoneNo?.errors.maxlength">Contact No. must
+                            be 10 digit ,No need to add country code</div>
+
+                    </div>
+                </div>
+            </div>
 
 
-        <div class="row">
-            <div class=" col-md-6">
-                <label>Address</label>
-                <input type="text" name="" id="" value="{{employee.address}}">
-            </div>
-            <div class=" col-md-6 ">
-                <label>Phone</label>
-                <input type="email" name="" id="" value="{{employee.phoneNo}}">
-            </div>
-        </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Manager</label>
+                    <input type="text" [ngClass]="{ 'is-invalid': submitted && f.managerId?.errors }"
+                        formControlName="managerId" class="form-control round" id="managerId" name="managerId"
+                        placeholder="managerId">
+                    <div *ngIf="submitted && f.managerId?.errors" class="invalid-feedback">
+                        <div *ngIf="f.managerId?.errors.required"> managerId is required</div>
+                    </div>
 
-
-        <div class="row">
-            <div class=" col-md-6">
-                <label>Manager</label>
-                <input type="text" name="" id="" value="{{employee.managerId}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Password</label>
+                    <input type="password" [ngClass]="{ 'is-invalid': submitted && f.password?.errors }"
+                        formControlName="password" class="form-control round" id="password" name="password"
+                        placeholder="Password">
+                    <div *ngIf="submitted && f.password?.errors" class="invalid-feedback">
+                        <div *ngIf="f.password?.errors.required">password is required</div>
+                        <div *ngIf="f.password?.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                </div>
             </div>
-            <div class=" col-md-6 ">
-                <label>Current leaves</label>
-                <input type="email" name="" id="" value="{{employee.currentLeaves}}">
+            <div class="row">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button (click)="onReset()" class="btn btn-danger round"
+                        style="margin-left: 10px;border-color: black;">Reset</button>
+                </div>
             </div>
-        </div>
-
-        <div class="row" style="text-align: center">
-            <div class="form-group">
-                <br>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

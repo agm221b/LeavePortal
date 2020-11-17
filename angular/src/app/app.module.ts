@@ -15,6 +15,7 @@ import { LeaveComponent } from './leave/leave.component';
 import { LeavehistoryComponent } from './leavehistory/leavehistory.component';
 import { NavbaremployeeComponent } from './navbaremployee/navbaremployee.component';
 import { FooterComponent } from './footer/footer.component';
+import { ManagerrequestsComponent } from './managerrequests/managerrequests.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FooterComponent } from './footer/footer.component';
     LeaveComponent,
     LeavehistoryComponent,
     NavbaremployeeComponent,
-    FooterComponent
+    FooterComponent,
+    ManagerrequestsComponent
   ],
   imports: [
     BrowserModule,
