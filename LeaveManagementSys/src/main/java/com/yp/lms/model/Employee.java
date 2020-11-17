@@ -27,8 +27,8 @@ public class Employee {
 	@OneToMany(mappedBy = "employee")
 	private List<Leave> leaveList = new ArrayList<Leave>();
 	
-	public Employee(int empId, String name, String email, String address, int phoneNo, int managerId, int currentLeaves,
-			Blob image, boolean isManager, ArrayList<Leave> leaveList) {
+	public Employee(int empId, String name, String email, String address, Blob image, int managerId, int currentLeaves,
+			int phoneNo, boolean isManager, ArrayList<Leave> leaveList) {
 		super();
 		this.empId = empId;
 		this.name = name;
