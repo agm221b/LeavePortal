@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee addEmployee(Employee employee) {
 		// TODO Auto-generated method stub
-		if(findEmployee(employee.getEmpId())!=null){
+		if(findEmployee(employee.getEmpId())!=null || employeeRepository.findEmployeeByEmail(employee.getEmail())!=null){
 			System.out.println("Employee already exists");
 			return null;												//500 error
 		}
