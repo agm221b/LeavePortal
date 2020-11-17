@@ -2,16 +2,17 @@ package com.yp.lms.model;
 
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Employee")
+@Table(name = "employees")
 public class Employee {
+	@Id
 	private int empId;
 	private String name;
 	private String email;
@@ -25,7 +26,8 @@ public class Employee {
 	private int currentLeaves;
 	private Blob image;
 	private boolean isManager;
-	private ArrayList<Leave> leaveList;
+	@OneToMany(mappedBy = "employee")
+	private List<Leave> leaveList = new ArrayList<Leave>();
 	
 	public Employee(int empId, String name, String email, String address, int phoneNo, int managerId, int currentLeaves,
 			Blob image, boolean isManager, ArrayList<Leave> leaveList) {
@@ -42,9 +44,6 @@ public class Employee {
 		this.leaveList = leaveList;
 	}
  
-	@OneToMany
-	@Id
-	@JoinColumn(name="empId")
 	public int getEmpId() {
 		return empId;
 	}
@@ -118,7 +117,7 @@ public class Employee {
 	}
 
 	public ArrayList<Leave> getLeaveList() {
-		return leaveList;
+		return (ArrayList<Leave>) leaveList;
 	}
 
 	public void setLeaveList(ArrayList<Leave> leaveList) {

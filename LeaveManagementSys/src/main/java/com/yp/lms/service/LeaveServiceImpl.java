@@ -61,7 +61,7 @@ public class LeaveServiceImpl implements LeaveService {
 			System.out.println("Leave does not exist");
 			return 0;														//500 error
 		}
-		Employee deleteEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmpId());
+		Employee deleteEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
 		ArrayList<Leave> leaveList = deleteEmployee.getLeaveList();
 		if(leaveList.remove(leave)) {
 			System.out.println("Leave removed from employee's list");
@@ -87,7 +87,7 @@ public class LeaveServiceImpl implements LeaveService {
 	@Override
 	public Leave acceptLeave(Leave leave) {
 		// TODO Auto-generated method stub
-		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmpId());
+		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
 		ArrayList<Leave> saveLeaveList = saveEmployee.getLeaveList();
 		Leave saveLeave = null;
 		int index=-1;
@@ -116,7 +116,7 @@ public class LeaveServiceImpl implements LeaveService {
 	@Override
 	public Leave rejectLeave(Leave leave) {
 		// TODO Auto-generated method stub
-		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmpId());
+		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
 		ArrayList<Leave> saveLeaveList = saveEmployee.getLeaveList();
 		Leave saveLeave = null;
 		int index=-1;
