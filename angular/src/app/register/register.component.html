@@ -1,1 +1,101 @@
-<p>register works!</p>
+<div>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">FINDANY</a>
+        <form class="form-inline" style="padding-top: 8px;padding-left: 1000px">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+<br><br><br>
+<div class="col-md-4"></div>
+<div class="col-md-4 abc">
+    <form (ngSubmit)="RegisterCustomer()" [formGroup]="registerForm" class="form">
+        <legend>Register Employee</legend>
+
+        <div class="form-group">
+            <label for="">Image</label>
+            <input id="profilepic" class="form-control round" type="file" name="profilepic">
+        </div>
+
+
+      
+
+        <div class="form-group">
+            <label for="">First Name</label>
+            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }"
+                formControlName="firstName" class="form-control round" id="firstName" name="firstName"
+                placeholder="firstName">
+
+            <div *ngIf="submitted && f.firstName?.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName?.errors.required"> First Name is required</div>
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
+            <label for="">Last Name</label>
+            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" formControlName="lastName"
+                class="form-control round" id="lastName" name="lastName" placeholder="Last Name">
+
+            <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName?.errors.required"> Last Name is required</div>
+            </div>
+        </div> -->
+
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.custEmailId?.errors }"
+                formControlName="custEmailId" class="form-control round" id="custEmailId" name="custEmailId"
+                placeholder="Email">
+            <div *ngIf="submitted && f.custEmailId?.errors" class="invalid-feedback">
+                <div *ngIf="f.custEmailId?.errors.required"> Email is required</div>
+                <div *ngIf="f.custEmailId?.errors.email">Email must be a valid email address</div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Contact No</label>
+            <input type="tel" [ngClass]="{ 'is-invalid': submitted && f.custmobileNumber?.errors }"
+                formControlName="custmobileNumber" class="form-control round" id="custmobileNumber"
+                name="custmobileNumber" placeholder="Contact No.">
+            <div *ngIf="submitted && f.custmobileNumber?.errors" class="invalid-feedback">
+                <div *ngIf="f.custmobileNumber?.errors.required">Contact No is required</div>
+                <div *ngIf="f.custmobileNumber?.errors.minlength||f.custmobileNumber?.errors.maxlength">Contact No. must
+                    be 10 digit ,No need to add country code</div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Address</label>
+            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.custAddress?.errors }"
+                formControlName="custAddress" class="form-control round" id="custAddress" name="custAddress"
+                placeholder="Address">
+
+            <div *ngIf="submitted && f.custAddress?.errors" class="invalid-feedback">
+                <div *ngIf="f.custAddress?.errors.required"> Address is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" [ngClass]="{ 'is-invalid': submitted && f.customerPassword?.errors }"
+                formControlName="customerPassword" class="form-control round" id="customerPassword"
+                name="customerPassword" placeholder="Password">
+            <div *ngIf="submitted && f.customerPassword?.errors" class="invalid-feedback">
+                <div *ngIf="f.customerPassword?.errors.required">password is required</div>
+                <div *ngIf="f.customerPassword?.errors.minlength">Password must be at least 6 characters</div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button (click)="onReset()" class="btn btn-danger round"
+                style="margin-left: 190px;border-color: black;">Cancel</button>
+        </div>
+    </form>
+</div>
+<div class="col-md-4"></div>

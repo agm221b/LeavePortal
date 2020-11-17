@@ -1,0 +1,33 @@
+.abc {
+    width: 33.33333333%;
+    background-color:lightgray;
+    border-radius: 15px;
+    border-color: black;
+    padding-bottom: 10px;
+    
+}
+.btn-primary {
+    color: #fff;
+    background-color: royalblue;
+    border-color: black;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    border-radius: 10px;
+}
+legend{
+    text-align: center;
+    font-size: 36px;
+    padding-bottom: 5px;
+    font-family: sans-serif;
+}
+label{
+    font-size: 16px;
+}
+.invalid-feedback{
+    color: red;
+    background-color:white;
+    
+}
