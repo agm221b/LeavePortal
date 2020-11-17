@@ -14,6 +14,7 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { LeaveComponent } from './leave/leave.component';
 import { LeavehistoryComponent } from './leavehistory/leavehistory.component';
 import { NavbaremployeeComponent } from './navbaremployee/navbaremployee.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NavbaremployeeComponent } from './navbaremployee/navbaremployee.compone
     EditprofileComponent,
     LeaveComponent,
     LeavehistoryComponent,
-    NavbaremployeeComponent
+    NavbaremployeeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -8,15 +8,19 @@ import { Router } from '@angular/router';
 })
 export class NavbaremployeeComponent implements OnInit {
 
+  employee:any;
   constructor(private router: Router) { }
 
   ngOnInit() {
+    
   }
 
 
 
   isManager(){
-    
+   // if(employee.isManager==true){
+   //   return true;
+   // }
   }
 
   logout() {

@@ -10,20 +10,20 @@ import { Router } from '@angular/router';
 })
 export class LeaveComponent implements OnInit {
 
- leave ={ "leaveDate":"", "leaveDays":"", "leaveReason":""}
+  leave = { "leaveDate": "", "leaveDays": "", "leaveReason": "" }
 
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder,  
-    private dataservice: DataService,private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+    private dataservice: DataService, private router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       leaveDays: ['', Validators.required],
-      leaveReason : ['',Validators.maxLength(150)]
+      leaveReason: ['', Validators.maxLength(150)]
     })
   }
 
@@ -38,11 +38,11 @@ export class LeaveComponent implements OnInit {
       return;
     }
 
-   // let observable = this.dataservice.addAdmin(this.registerForm.value);
-   // observable.subscribe((result) => {
-   //  alert(JSON.stringify(result));
-   // this.router.navigate(['/adminlogin']);
-   // })
+    // let observable = this.dataservice.addAdmin(this.registerForm.value);
+    // observable.subscribe((result) => {
+    //  alert(JSON.stringify(result));
+    // this.router.navigate(['/adminlogin']);
+    // })
 
   }
 
@@ -52,6 +52,5 @@ export class LeaveComponent implements OnInit {
     this.router.navigate(['/leave']);
 
   }
-
 
 }

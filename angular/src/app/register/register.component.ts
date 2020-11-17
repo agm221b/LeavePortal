@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
 //id,name,email_id,address,phone number,image,manager_id,current leaves
-  cust =
+  registerObj =
   {
     "profilePic":"",
     "firstName": "",
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
 registerForm: FormGroup;
 submitted = false;
 constructor(private formBuilder: FormBuilder,private route: ActivatedRoute,
-  private router: Router) { }
+  private router: Router,private dataservice:DataService) { }
 
 ngOnInit() {
   this.registerForm = this.formBuilder.group({
@@ -48,7 +49,7 @@ RegisterCustomer() {
   if (this.registerForm.invalid) {
     return;
   }
-  //let observable = this.dataservice.addCustomer(this.registerForm.value);
+  //let observable = this.dataservice.registerEmployee(this.registerForm.value);
 
   //observable.subscribe((result) => {
   //  alert(JSON.stringify(result));

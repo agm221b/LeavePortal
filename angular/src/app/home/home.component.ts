@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     console.log(this.credantial);
     if (this.credantial.username == "admin@gmail.com" && this.credantial.password == "admin") {
 
+      
       this.router.navigate(['/employeehome']);
     }
     else {
