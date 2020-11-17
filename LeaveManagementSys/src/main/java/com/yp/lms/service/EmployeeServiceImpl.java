@@ -69,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public ArrayList<Employee> isManager() {
 		// TODO Auto-generated method stub
-		return employeeRepository.findAllByIsManager(false);
+		return employeeRepository.findEmployeesByIsManager(false);
 		
 	}
 
