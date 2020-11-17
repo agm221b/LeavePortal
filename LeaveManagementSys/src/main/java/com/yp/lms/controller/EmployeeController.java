@@ -37,7 +37,7 @@ public ResponseEntity<Employee> createFindEmployee(@RequestParam(value = "id") I
 
 @PostMapping("editProfile")
 public ResponseEntity<Employee> createEditEmployeeDetails(@RequestBody Employee employee){
-	Employee emp=service.addEmployee(employee);
+	Employee emp=service.editEmployeeDetails(employee);
 	return ResponseEntity.ok(emp);
 }
 
