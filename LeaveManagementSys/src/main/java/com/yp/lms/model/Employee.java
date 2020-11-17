@@ -16,9 +16,7 @@ public class Employee {
 	private int empId;
 	private String name;
 	private String email;
-	/**
-	 * password is to be stored in password format
-	 */
+	
 	private String password;
 	private String address;
 	private int phoneNo;

@@ -1,5 +1,7 @@
 package com.yp.lms.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 			System.out.println("Employee already exists");
 			return null;												//500 error
 		}
+		employee.setLeaveList(null);
+		employee.setCurrentLeaves(10);
 		Employee saveEmployee = employeeRepository.save(employee);
 		System.out.println("Employee added successfully");
 		return saveEmployee;
@@ -60,6 +64,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return null;												//401 error
 		}
 		return loginEmployee;
+	}
+
+	@Override
+	public ArrayList<Employee> isManager() {
+		// TODO Auto-generated method stub
+		return employeeRepository.findAllByIsManager(false);
+		
 	}
 
 

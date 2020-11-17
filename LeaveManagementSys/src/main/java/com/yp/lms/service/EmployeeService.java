@@ -1,5 +1,7 @@
 package com.yp.lms.service;
 
+import java.util.ArrayList;
+
 import com.yp.lms.model.Employee;
 
 /**
@@ -14,6 +16,8 @@ public interface EmployeeService {
 	Employee editEmployeeDetails(Employee employee);
 	
 	Employee loginEmployee(String email, String password);
+	
+	ArrayList<Employee> isManager();
 	
 	
 	
