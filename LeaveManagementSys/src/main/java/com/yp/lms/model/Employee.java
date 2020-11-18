@@ -112,11 +112,11 @@ public class Employee {
 		this.image = image;
 	}
 
-	public boolean isManager() {
+	public boolean getIsManager() {
 		return isManager;
 	}
 
-	public void setManager(boolean isManager) {
+	public void setIsManager(boolean isManager) {
 		this.isManager = isManager;
 	}
 

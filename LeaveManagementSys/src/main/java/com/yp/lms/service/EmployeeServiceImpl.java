@@ -46,11 +46,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee editEmployeeDetails(Employee employee) {
 		// TODO Auto-generated method stub
-		if(findEmployee(employee.getEmpId())==null){
+		
+		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(employee.getEmpId());
+		if(saveEmployee==null) {
 			System.out.println("Employee does not exist");
-			return null;												//500 error
+			return null;												
 		}
-		Employee saveEmployee = employeeRepository.save(employee);
+		saveEmployee.setAddress(employee.getAddress());
+		saveEmployee.setCurrentLeaves(employee.getCurrentLeaves());
+		saveEmployee.setEmail(employee.getEmail());
+		saveEmployee.setImage(employee.getImage());
+		saveEmployee.setLeaveList(employee.getLeaveList());
+		saveEmployee.setIsManager(employee.getIsManager());
+		saveEmployee.setManagerId(employee.getManagerId());
+		saveEmployee.setName(employee.getName());
+		saveEmployee.setPassword(employee.getPassword());
+		saveEmployee.setPhoneNo(employee.getPhoneNo());
+		
+		employeeRepository.save(saveEmployee);
 		System.out.println("Employee updated successfully");
 		return saveEmployee;
 	}
