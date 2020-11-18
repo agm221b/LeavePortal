@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 import com.yp.lms.model.Leave;
 import com.yp.lms.service.LeaveService;
 /**
@@ -38,12 +39,14 @@ public class LeaveController {
 		return ResponseEntity.ok(leaves);
 	}
 	
-	@GetMapping("leavehistory")
-	public ResponseEntity<Leave> createFindLeave(@RequestBody Leave leave){
-		Leave leaves=service.findLeave(leave);
-		return ResponseEntity.ok(leaves);
-		
-	}
+	/*
+	 * @GetMapping("leavehistory") public ResponseEntity<ArrayList<Leave>>
+	 * createFindLeave(@RequestBody Leave leave){
+	 * ArrayList<Leave>leaves=service.findLeavesByEmployee(leave); return
+	 * ResponseEntity.ok(leaves);
+	 * 
+	 * }
+	 */
 	
 	@DeleteMapping("deleteLeave")
 	public ResponseEntity<Integer> createDeleteLeave(@RequestBody Leave leave){
