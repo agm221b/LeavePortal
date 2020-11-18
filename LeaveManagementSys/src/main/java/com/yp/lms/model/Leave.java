@@ -1,5 +1,11 @@
 package com.yp.lms.model;
 
+/**
+*
+@author Pooja Tiwari and Nikita Padwal
+*
+*
+**/
 import java.sql.Date;
 
 import javax.persistence.Entity;

@@ -1,47 +1,59 @@
 package com.yp.lms;
 
+/**
+*
+@author Pooja Tiwari
+*
+*
+**/
 import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Blob;
-import java.util.ArrayList;
-
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.yp.lms.model.Employee;
-import com.yp.lms.model.Leave;
 
-
-/*
- * *
- * *
- * *@author- Pooja Tiwari**
- * *
- * */
-
+@SpringBootApplication
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApplicationArguments.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EmployeeControllerTest {
+class EmpControllerTest {
+
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterAll
+	static void tearDownAfterClass() throws Exception {
+	}
+
+	@BeforeEach
+	void setUp() throws Exception {
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+	}
 	@Autowired
 	private TestRestTemplate restTemplate;
 
 	@LocalServerPort
 	private int port;
-
+	
 	private String getRootUrl() {
 		return "http://localhost:" + port;
 	}
-
 	@Test
 	public void contextLoads() {
 
@@ -83,4 +95,5 @@ public class EmployeeControllerTest {
 	}
 
 	
+
 }
