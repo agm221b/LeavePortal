@@ -9,6 +9,8 @@ package com.yp.lms.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +22,7 @@ import com.yp.lms.util.Status;
 @Table(name = "leaves")
 public class Leave {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int leaveId;
 	@ManyToOne
 	@JoinColumn(name="empId", nullable = false)
