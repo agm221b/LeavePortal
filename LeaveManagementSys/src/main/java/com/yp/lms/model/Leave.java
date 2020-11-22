@@ -93,6 +93,10 @@ public class Leave {
 	public void setNoOfDays(int noOfDays) {
 		this.noOfDays = noOfDays;
 	}
+	
+	public Leave() {
+		super();
+	}
 
 	
 	
