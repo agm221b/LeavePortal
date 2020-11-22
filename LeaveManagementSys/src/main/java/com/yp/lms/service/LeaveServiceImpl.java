@@ -27,26 +27,47 @@ public class LeaveServiceImpl implements LeaveService {
 	@Autowired
 	LeaveRepository leaveRepository;
 
-	@Override
-	public Leave addLeave(Leave leave, int empId) {
-		// TODO Auto-generated method stub
-		if(findLeave(leave)!= null) {
-			System.out.println("Leave exists");
-		}
-		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(empId);
-		leave.setManagerId(saveEmployee.getManagerId());
-		saveEmployee.getLeaveList().add(leave);
-		int currentLeaves = saveEmployee.getCurrentLeaves();
-		currentLeaves = currentLeaves - leave.getNoOfDays();
-		if(currentLeaves < 0) {
-			System.out.println("Exceeded Leave limit");
-			return null;														//500 error
-		}
-		saveEmployee.setCurrentLeaves(currentLeaves);
-		Leave saveLeave = leaveRepository.save(leave);
-		employeeRepository.save(saveEmployee);
-		return saveLeave;
-	}
+//	@Override
+//	public Leave addLeave(Leave leave, int empId) {
+//		// TODO Auto-generated method stub
+//		if(findLeave(leave)!= null) {
+//			System.out.println("Leave exists");
+//		}
+//		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(empId);
+//		leave.setManagerId(saveEmployee.getManagerId());
+//		//saveEmployee.getLeaveList().add(leave);
+//		int currentLeaves = saveEmployee.getCurrentLeaves();
+//		currentLeaves = currentLeaves - leave.getNoOfDays();
+//		if(currentLeaves < 0) {
+//			System.out.println("Exceeded Leave limit");
+//			return null;														//500 error
+//		}
+//		saveEmployee.setCurrentLeaves(currentLeaves);
+//		Leave saveLeave = leaveRepository.save(leave);
+//		employeeRepository.save(saveEmployee);
+//		return saveLeave;
+//	}
+		@Override
+		public Leave addLeave(Leave leave,int empId) {
+	        // TODO Auto-generated method stub
+	        if(findLeave(leave)!= null) {
+	            System.out.println("Leave exists"+findLeave(leave));
+	        }
+	        Employee saveEmployee = employeeRepository.findEmployeeByEmpId(empId);
+	        int currentLeaves = saveEmployee.getCurrentLeaves();
+	        currentLeaves = currentLeaves - leave.getNoOfDays();
+	        if(currentLeaves < 0) {
+	        	System.out.println("Limit exceeded");
+	        	return null;
+	        }
+	        saveEmployee.setCurrentLeaves(currentLeaves);
+	       
+	        leave.setEmployee(saveEmployee);
+	        employeeRepository.save(saveEmployee);
+	        
+	        return leaveRepository.save(leave);
+	       
+	    }
 
 	@Override
 	public Leave findLeave(Leave leave) {
@@ -62,11 +83,7 @@ public class LeaveServiceImpl implements LeaveService {
 			return 0;														//500 error
 		}
 		Employee deleteEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
-		ArrayList<Leave> leaveList = deleteEmployee.getLeaveList();
-		if(leaveList.remove(leave)) {
-			System.out.println("Leave removed from employee's list");
-		}
-		deleteEmployee.setLeaveList(leaveList);
+		
 		leaveRepository.delete(leave);
 		System.out.println("Leave deleted from leaves database");
 		return 1;
@@ -75,7 +92,9 @@ public class LeaveServiceImpl implements LeaveService {
 	@Override
 	public ArrayList<Leave> findLeavesByEmployee(int empId) {
 		// TODO Auto-generated method stub
-		return employeeRepository.findEmployeeByEmpId(empId).getLeaveList();
+		//return employeeRepository.findEmployeeByEmpId(empId).getLeaveList();
+		Employee findEmployee = employeeRepository.findEmployeeByEmpId(empId);
+		return leaveRepository.findLeaveByEmployee(findEmployee);
 	}
 
 	@Override
@@ -87,28 +106,11 @@ public class LeaveServiceImpl implements LeaveService {
 	@Override
 	public Leave acceptLeave(Leave leave) {
 		// TODO Auto-generated method stub
-		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
-		ArrayList<Leave> saveLeaveList = saveEmployee.getLeaveList();
-		Leave saveLeave = null;
-		int index=-1;
-		int count=0;
-		for (Leave leave2 : saveLeaveList) {
-			if(leave2.getLeaveId() == leave.getLeaveId()) {
-				saveLeave = leave2;
-				index= saveLeaveList.indexOf(leave2);
-				count++;
-			}
-		}
-		if(count>1) {
-			System.out.println("Error, multiple leaves of same leaveId in Emps");
-			return null;															//500 error
-		}
+		Leave saveLeave = leaveRepository.findLeaveByLeaveId(leave.getLeaveId());
 		saveLeave.setStatus(Status.ACCEPTED);
+		//Leave saveLeave = leaveRepository.findLeaveByLeaveId(leave.getLeaveId());
 		
-		saveLeaveList.set(index, saveLeave);
-		saveEmployee.setLeaveList(saveLeaveList);
 		
-		employeeRepository.save(saveEmployee);
 		leaveRepository.save(saveLeave);
 		return saveLeave;
 	}
@@ -116,30 +118,16 @@ public class LeaveServiceImpl implements LeaveService {
 	@Override
 	public Leave rejectLeave(Leave leave) {
 		// TODO Auto-generated method stub
-		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
-		ArrayList<Leave> saveLeaveList = saveEmployee.getLeaveList();
-		Leave saveLeave = null;
-		int index=-1;
-		int count=0;
-		for (Leave leave2 : saveLeaveList) {
-			if(leave2.getLeaveId() == leave.getLeaveId()) {
-				saveLeave = leave2;
-				index= saveLeaveList.indexOf(leave2);
-				count++;
-			}
-		}
-		if(count>1) {
-			System.out.println("Error, multiple leaves of same leaveId in Emps");
-			return null;															//500 error
-		}
-		saveLeave.setStatus(Status.REJECTED);
 		
+		Leave saveLeave = leaveRepository.findLeaveByLeaveId(leave.getLeaveId());
+		saveLeave.setStatus(Status.REJECTED);
+		//Leave saveLeave = leaveRepository.findLeaveByLeaveId(leave.getLeaveId());
+		
+		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(saveLeave.getEmployee().getEmpId());
 		int currentLeaves = saveEmployee.getCurrentLeaves();
 		currentLeaves = currentLeaves + saveLeave.getNoOfDays();
 		saveEmployee.setCurrentLeaves(currentLeaves);
-		
-		saveLeaveList.set(index, saveLeave);
-		saveEmployee.setLeaveList(saveLeaveList);
+		saveLeave.setEmployee(saveEmployee);
 		
 		employeeRepository.save(saveEmployee);
 		leaveRepository.save(saveLeave);
