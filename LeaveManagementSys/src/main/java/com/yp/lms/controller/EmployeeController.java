@@ -2,6 +2,7 @@ package com.yp.lms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.yp.lms.model.Employee;
@@ -18,13 +19,21 @@ public class EmployeeController {
 	
 	@Autowired
 	 EmployeeService service;
-
-	public EmployeeController(EmployeeService service) {
-		this.service = service;
-	}
 	
+	@Autowired
+    BCryptPasswordEncoder encoder;
+
+	
+	
+public EmployeeController(EmployeeService service, BCryptPasswordEncoder encoder) {
+		super();
+		this.service = service;
+		this.encoder = encoder;
+	}
+
 @PostMapping("register")
 public ResponseEntity<Employee> createaAddEmployee(@RequestBody Employee employee){
+	employee.setPassword(encoder.encode(employee.getPassword()));
 	Employee emp=service.addEmployee(employee);
 	return ResponseEntity.ok(emp);
 }
@@ -37,6 +46,7 @@ public ResponseEntity<Employee> createFindEmployee(@RequestParam(value = "id") I
 
 @PostMapping("editProfile")
 public ResponseEntity<Employee> createEditEmployeeDetails(@RequestBody Employee employee){
+	employee.setPassword(encoder.encode(employee.getPassword()));
 	Employee emp=service.editEmployeeDetails(employee);
 	return ResponseEntity.ok(emp);
 }

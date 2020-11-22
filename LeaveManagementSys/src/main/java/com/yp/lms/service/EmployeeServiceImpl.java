@@ -3,6 +3,7 @@ package com.yp.lms.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.yp.lms.model.Employee;
@@ -22,6 +23,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
 	LeaveRepository leaveRepository;
+	
+
+    @Autowired
+    BCryptPasswordEncoder encoder;
+
 
 	@Override
 	public Employee addEmployee(Employee employee) {
@@ -56,7 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		saveEmployee.setCurrentLeaves(employee.getCurrentLeaves());
 		saveEmployee.setEmail(employee.getEmail());
 		saveEmployee.setImage(employee.getImage());
-	  //saveEmployee.setLeaveList(employee.getLeaveList());
+		//saveEmployee.setLeaveList(employee.getLeaveList());
 		saveEmployee.setIsManager(employee.getIsManager());
 		saveEmployee.setManagerId(employee.getManagerId());
 		saveEmployee.setName(employee.getName());
@@ -71,12 +77,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee loginEmployee(String email, String password) {
 		// TODO Auto-generated method stub
-		Employee loginEmployee = employeeRepository.findEmployeeByEmailAndPassword(email, password);
-		if(loginEmployee==null) {
-			System.out.println("Incorrect email/password");
-			return null;												//401 error
+		String verifyPassword = employeeRepository.findEmployeeByEmail(email).getPassword();
+		System.out.println("verifyPassword is "+verifyPassword);
+		System.out.println("password is "+password);
+		if (encoder.matches(password, verifyPassword))
+		{
+			Employee loginEmployee = employeeRepository.findEmployeeByEmailAndPassword(email,verifyPassword );
+			if(loginEmployee==null) {
+				System.out.println("Incorrect email/password 1");
+				return null;												//401 error
+			}
+			return loginEmployee;
 		}
-		return loginEmployee;
+		else
+		{   System.out.println("Incorrect email/password 2");
+			return null;
+		}
+		
+		
 	}
 
 	@Override
