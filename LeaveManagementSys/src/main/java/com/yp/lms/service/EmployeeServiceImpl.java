@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			System.out.println("Employee already exists");
 			return null;												//500 error
 		}
-		employee.setLeaveList(null);
+		//employee.setLeaveList(null);
 		employee.setCurrentLeaves(10);
 		Employee saveEmployee = employeeRepository.save(employee);
 		System.out.println("Employee added successfully");
@@ -56,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		saveEmployee.setCurrentLeaves(employee.getCurrentLeaves());
 		saveEmployee.setEmail(employee.getEmail());
 		saveEmployee.setImage(employee.getImage());
-		saveEmployee.setLeaveList(employee.getLeaveList());
+	  //saveEmployee.setLeaveList(employee.getLeaveList());
 		saveEmployee.setIsManager(employee.getIsManager());
 		saveEmployee.setManagerId(employee.getManagerId());
 		saveEmployee.setName(employee.getName());

@@ -7,7 +7,6 @@ package com.yp.lms.model;
 *
 **/
 import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,6 +15,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
+
+
 
 @Entity
 @Table(name = "employees")
@@ -28,16 +31,23 @@ public class Employee {
 	
 	private String password;
 	private String address;
-	private int phoneNo;
+	private long phoneNo;
 	private int managerId;
 	private int currentLeaves;
 	private Blob image;
 	private boolean isManager;
-	@OneToMany(mappedBy = "employee")
-	private List<Leave> leaveList = new ArrayList<Leave>();
+	/*
+	 * @OneToMany(mappedBy = "employee") private List<Leave> leaveList;
+	 */
 	
+	
+	
+	public Employee() {
+		super();
+	}
+
 	public Employee(int empId, String name, String email, String address, Blob image, int managerId, int currentLeaves,
-			int phoneNo, boolean isManager, ArrayList<Leave> leaveList) {
+			long phoneNo, boolean isManager/* , ArrayList<Leave> leaveList */) {
 		super();
 		this.empId = empId;
 		this.name = name;
@@ -48,7 +58,7 @@ public class Employee {
 		this.currentLeaves = currentLeaves;
 		this.image = image;
 		this.isManager = isManager;
-		this.leaveList = leaveList;
+		/* this.leaveList = leaveList; */
 	}
  
 	public int getEmpId() {
@@ -83,12 +93,12 @@ public class Employee {
 		this.address = address;
 	}
 
-	public int getPhoneNo() {
+	public long getPhoneNo() {
 		return phoneNo;
 	}
 
-	public void setPhoneNo(int phoneNo) {
-		this.phoneNo = phoneNo;
+	public void setPhoneNo(long l) {
+		this.phoneNo = l;
 	}
 
 	public int getManagerId() {
@@ -123,14 +133,13 @@ public class Employee {
 		this.isManager = isManager;
 	}
 
-	public ArrayList<Leave> getLeaveList() {
-		return (ArrayList<Leave>) leaveList;
-	}
-
-	public void setLeaveList(ArrayList<Leave> leaveList) {
-		this.leaveList = leaveList;
-	}
-
+	/*
+	 * public ArrayList<Leave> getLeaveList() { return (ArrayList<Leave>) leaveList;
+	 * }
+	 * 
+	 * public void setLeaveList(ArrayList<Leave> leaveList) { this.leaveList =
+	 * leaveList; }
+	 */
 	public String getPassword() {
 		return password;
 	}
@@ -139,13 +148,13 @@ public class Employee {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [empId=" + empId + ", name=" + name + ", email=" + email + ", address=" + address
-				+ ", phoneNo=" + phoneNo + ", managerId=" + managerId + ", currentLeaves=" + currentLeaves + ", image="
-				+ image + ", isManager=" + isManager + ", leaveList=" + leaveList + "]";
-	}
-
+	/*
+	 * @Override public String toString() { return "Employee [empId=" + empId +
+	 * ", name=" + name + ", email=" + email + ", address=" + address + ", phoneNo="
+	 * + phoneNo + ", managerId=" + managerId + ", currentLeaves=" + currentLeaves +
+	 * ", image=" + image + ", isManager=" + isManager + ", leaveList=" + leaveList
+	 * + "]"; }
+	 */
 
 	
 	

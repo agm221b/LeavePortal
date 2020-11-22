@@ -34,7 +34,7 @@ public class LeaveController {
 	}
 	
 	@PostMapping("addLeaves")
-	public ResponseEntity<Leave> createAddLeave(@RequestBody Leave leave,int empId){
+	public ResponseEntity<Leave> createAddLeave(@RequestBody Leave leave,@RequestParam int empId){
 		Leave leaves=service.addLeave(leave, empId);
 		return ResponseEntity.ok(leaves);
 	}
@@ -56,6 +56,8 @@ public class LeaveController {
 	
 	@GetMapping("leaveEmpid")
 	public ResponseEntity<ArrayList<Leave>> createFindLeavesByEmployee(@RequestParam Integer empId){
+		System.out.println("values"+empId);
+		System.out.println("list"+service.findLeavesByEmployee(empId));
 		ArrayList<Leave> leaves=service.findLeavesByEmployee(empId);
 		return ResponseEntity.ok(leaves);
 	}
