@@ -54,6 +54,7 @@ public class LeaveServiceImpl implements LeaveService {
 	            System.out.println("Leave exists"+findLeave(leave));
 	        }
 	        Employee saveEmployee = employeeRepository.findEmployeeByEmpId(empId);
+	        
 	        int currentLeaves = saveEmployee.getCurrentLeaves();
 	        currentLeaves = currentLeaves - leave.getNoOfDays();
 	        if(currentLeaves < 0) {
@@ -63,6 +64,7 @@ public class LeaveServiceImpl implements LeaveService {
 	        saveEmployee.setCurrentLeaves(currentLeaves);
 	       
 	        leave.setEmployee(saveEmployee);
+	        leave.setManagerId(saveEmployee.getManagerId());
 	        employeeRepository.save(saveEmployee);
 	        
 	        return leaveRepository.save(leave);
