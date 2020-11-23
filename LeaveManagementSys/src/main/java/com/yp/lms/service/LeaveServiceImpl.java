@@ -82,9 +82,9 @@ public class LeaveServiceImpl implements LeaveService {
 			System.out.println("Leave does not exist");
 			return 0;														//500 error
 		}
-		Employee deleteEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
-		
-		leaveRepository.delete(leave);
+		//Employee deleteEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
+		Leave findLeave = leaveRepository.findLeaveByLeaveId(leave.getLeaveId());
+		leaveRepository.delete(findLeave);
 		System.out.println("Leave deleted from leaves database");
 		return 1;
 	}
