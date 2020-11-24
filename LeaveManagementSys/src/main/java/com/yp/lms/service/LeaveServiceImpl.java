@@ -86,6 +86,12 @@ public class LeaveServiceImpl implements LeaveService {
 		}
 		//Employee deleteEmployee = employeeRepository.findEmployeeByEmpId(leave.getEmployee().getEmpId());
 		Leave findLeave = leaveRepository.findLeaveByLeaveId(leave.getLeaveId());
+		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(findLeave.getEmployee().getEmpId());
+		int currentLeaves = saveEmployee.getCurrentLeaves();
+		currentLeaves = currentLeaves + findLeave.getNoOfDays();
+		saveEmployee.setCurrentLeaves(currentLeaves);
+		
+		employeeRepository.save(saveEmployee);
 		leaveRepository.delete(findLeave);
 		System.out.println("Leave deleted from leaves database");
 		return 1;
