@@ -18,4 +18,5 @@ public interface LeaveService {
 	Leave acceptLeave(int leaveid);
 	Leave rejectLeave(int leaveid);
 
+	
 }
