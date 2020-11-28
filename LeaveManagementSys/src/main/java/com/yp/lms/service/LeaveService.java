@@ -15,7 +15,6 @@ public interface LeaveService {
 	int deleteLeave(int leaveId);
 	ArrayList<Leave> findLeavesByEmployee(int empId);
 	ArrayList<Leave> findLeavesForManager(int empId);
-	
 	Leave acceptLeave(int leaveid);
 	Leave rejectLeave(int leaveid);
 

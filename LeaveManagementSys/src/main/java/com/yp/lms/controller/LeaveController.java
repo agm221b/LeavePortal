@@ -40,7 +40,6 @@ public class LeaveController {
 	}
 	
 	
-	
 	@DeleteMapping("deleteleave")
 	public ResponseEntity<Integer> createDeleteLeave(@RequestParam Integer leaveId){
 		int leaves=service.deleteLeave(leaveId);
