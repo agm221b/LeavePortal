@@ -33,28 +33,21 @@ public class LeaveController {
 		this.service = service;
 	}
 	
-	@PostMapping("addLeaves")
+	@PostMapping("addleaves")
 	public ResponseEntity<Leave> createAddLeave(@RequestBody Leave leave,@RequestParam int empId){
 		Leave leaves=service.addLeave(leave, empId);
 		return ResponseEntity.ok(leaves);
 	}
 	
-	/*
-	 * @GetMapping("leavehistory") public ResponseEntity<ArrayList<Leave>>
-	 * createFindLeave(@RequestBody Leave leave){
-	 * ArrayList<Leave>leaves=service.findLeavesByEmployee(leave); return
-	 * ResponseEntity.ok(leaves);
-	 * 
-	 * }
-	 */
 	
-	@DeleteMapping("deleteLeave")
-	public ResponseEntity<Integer> createDeleteLeave(@RequestBody Leave leave){
-		int leaves=service.deleteLeave(leave);
+	
+	@DeleteMapping("deleteleave")
+	public ResponseEntity<Integer> createDeleteLeave(@RequestParam Integer leaveId){
+		int leaves=service.deleteLeave(leaveId);
 		return ResponseEntity.ok(leaves);
 	}
 	
-	@GetMapping("leaveEmpid")
+	@GetMapping("leaveempid")
 	public ResponseEntity<ArrayList<Leave>> createFindLeavesByEmployee(@RequestParam Integer empId){
 		System.out.println("values"+empId);
 		System.out.println("list"+service.findLeavesByEmployee(empId));
@@ -62,21 +55,21 @@ public class LeaveController {
 		return ResponseEntity.ok(leaves);
 	}
 	
-	@GetMapping("leaveManager")
-	public ResponseEntity<ArrayList<Leave>> createFindLeavesForManager(@RequestParam Integer empId){
-		ArrayList<Leave> leaves=service.findLeavesForManager(empId);
+	@GetMapping("leavemanager")
+	public ResponseEntity<ArrayList<Leave>> createFindLeavesForManager(@RequestParam Integer managerId){
+		ArrayList<Leave> leaves=service.findLeavesForManager(managerId);
 		return ResponseEntity.ok(leaves);
 	}
 	
-	@PostMapping("acceptLeaves")
-	public ResponseEntity<Leave> createAcceptLeave(@RequestBody Leave leave){
-		Leave leaves=service.acceptLeave(leave);
+	@PostMapping("acceptleaves")
+	public ResponseEntity<Leave> createAcceptLeave(@RequestParam Integer leaveId){
+		Leave leaves=service.acceptLeave(leaveId);
 		return ResponseEntity.ok(leaves);
 	}
 	
-	@PostMapping("rejectLeaves")
-	public ResponseEntity<Leave> createRejectLeave(@RequestBody Leave leave){
-		Leave leaves=service.rejectLeave(leave);
+	@PostMapping("rejectleaves")
+	public ResponseEntity<Leave> createRejectLeave(@RequestParam Integer leaveid){
+		Leave leaves=service.rejectLeave(leaveid);
 		return ResponseEntity.ok(leaves);
 	}
 	

@@ -12,11 +12,11 @@ import com.yp.lms.model.Leave;
 public interface LeaveService {
 	Leave addLeave(Leave leave, int empId);
 	Leave findLeave(Leave leave);
-	int deleteLeave(Leave leave);
+	int deleteLeave(int leaveId);
 	ArrayList<Leave> findLeavesByEmployee(int empId);
 	ArrayList<Leave> findLeavesForManager(int empId);
 	
-	Leave acceptLeave(Leave leave);
-	Leave rejectLeave(Leave leave);
+	Leave acceptLeave(int leaveid);
+	Leave rejectLeave(int leaveid);
 
 }
