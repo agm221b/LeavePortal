@@ -13,7 +13,7 @@ public interface EmployeeService {
 	
 	Employee addEmployee(Employee employee);
 	Employee findEmployee(int empId);
-	Employee editEmployeeDetails(Employee employee);
+	Employee editEmployeeDetails(Employee employee,Integer empId);
 	
 	Employee loginEmployee(String email, String password);
 	

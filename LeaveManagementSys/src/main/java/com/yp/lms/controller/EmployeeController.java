@@ -1,11 +1,14 @@
 package com.yp.lms.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.yp.lms.model.Employee;
+import com.yp.lms.model.Leave;
 import com.yp.lms.service.EmployeeService;
 /**
  * 
@@ -33,7 +36,7 @@ public EmployeeController(EmployeeService service, BCryptPasswordEncoder encoder
 
 @PostMapping("register")
 public ResponseEntity<Employee> createaAddEmployee(@RequestBody Employee employee){
-	employee.setPassword(encoder.encode(employee.getPassword()));
+	//employee.setPassword(encoder.encode(employee.getPassword()));
 	Employee emp=service.addEmployee(employee);
 	return ResponseEntity.ok(emp);
 }
@@ -45,9 +48,9 @@ public ResponseEntity<Employee> createFindEmployee(@RequestParam(value = "id") I
 }
 
 @PostMapping("editProfile")
-public ResponseEntity<Employee> createEditEmployeeDetails(@RequestBody Employee employee){
-	employee.setPassword(encoder.encode(employee.getPassword()));
-	Employee emp=service.editEmployeeDetails(employee);
+public ResponseEntity<Employee> createEditEmployeeDetails(@RequestBody Employee employee, @RequestParam Integer empId){
+	//employee.setPassword(encoder.encode(employee.getPassword()));
+	Employee emp=service.editEmployeeDetails(employee,empId);
 	return ResponseEntity.ok(emp);
 }
 
@@ -57,10 +60,12 @@ public ResponseEntity<Employee> createLoginEmployee(@RequestBody Employee employ
 	return ResponseEntity.ok(emp);
 }
 
+@GetMapping("ismanager")
+public ResponseEntity<ArrayList<Employee>> createIsManager()
+{
+	ArrayList<Employee> employees=service.isManager();
+	return ResponseEntity.ok(employees);
+}
 
-
-	
-	
-	
 
 }

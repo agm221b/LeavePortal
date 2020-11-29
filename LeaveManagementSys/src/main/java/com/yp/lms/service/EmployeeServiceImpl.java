@@ -50,10 +50,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee editEmployeeDetails(Employee employee) {
+	public Employee editEmployeeDetails(Employee employee,Integer empId) {
 		// TODO Auto-generated method stub
 		
-		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(employee.getEmpId());
+		Employee saveEmployee = employeeRepository.findEmployeeByEmpId(empId);
 		if(saveEmployee==null) {
 			System.out.println("Employee does not exist");
 			return null;												
@@ -78,21 +78,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee loginEmployee(String email, String password) {
 		// TODO Auto-generated method stub
 		String verifyPassword = employeeRepository.findEmployeeByEmail(email).getPassword();
-		System.out.println("verifyPassword is "+verifyPassword);
-		System.out.println("password is "+password);
-		if (encoder.matches(password, verifyPassword))
-		{
+		/*
+		 * if (encoder.matches(password, verifyPassword)) {
+		 */
 			Employee loginEmployee = employeeRepository.findEmployeeByEmailAndPassword(email,verifyPassword );
 			if(loginEmployee==null) {
 				System.out.println("Incorrect email/password 1");
-				return null;												//401 error
-			}
-			return loginEmployee;
-		}
+				return null;	//401 error
+			 } 
+			//return loginEmployee;
+		/*}
 		else
 		{   System.out.println("Incorrect email/password 2");
 			return null;
-		}
+		}*/
+				return loginEmployee;
 		
 		
 	}
@@ -100,9 +100,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public ArrayList<Employee> isManager() {
 		// TODO Auto-generated method stub
-		return employeeRepository.findEmployeesByIsManager(false);
+		return employeeRepository.findEmployeesByIsManager(true);
 		
 	}
 
 
 }
+
+
+
+
+
